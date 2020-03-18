@@ -1,0 +1,36 @@
+{
+  "name": "ToDoList",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true,
+    "mysql": {
+      "table": "to_do_list"
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "required": false,
+      "id": 1
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string"
+    },
+    "completed": {
+      "type": "boolean",
+      "default": false
+    },
+    "created": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
