@@ -17,7 +17,8 @@ export class DataTableDataSource extends DataSource<DataTableItems> {
   sort: MatSort;
 
   constructor(
-    public apiService: RestApiService,
+    private apiService: RestApiService,
+
   ) {
     super();
 

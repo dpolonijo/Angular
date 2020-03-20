@@ -11,13 +11,20 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { RestApiService } from './services/rest-api.service';
 import { HttpClientModule } from '@angular/common/http';
-import { DataTableComponent } from './data-table/data-table.component'; 
+import { DataTableComponent } from './data-table/data-table.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AddComponent } from './dialogs/add/add.component';
+import { EditComponent } from './dialogs/edit/edit.component';
+import { DeleteComponent } from './dialogs/delete/delete.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     DataTableComponent,
+    AddComponent,
+    EditComponent,
+    DeleteComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +34,8 @@ import { DataTableComponent } from './data-table/data-table.component';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
   providers: [RestApiService],
   bootstrap: [AppComponent]

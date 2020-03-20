@@ -5,6 +5,8 @@ import { MatTable } from '@angular/material/table';
 import { DataTableDataSource} from './data-table-datasource';
 import { RestApiService } from '../services/rest-api.service';
 import { DataTableItems } from '../models/dataTableItems.model'
+import { MatDialog } from '@angular/material/dialog';
+import { AddComponent } from '../dialogs/add/add.component';
 
 @Component({
   selector: 'app-data-table',
@@ -21,13 +23,22 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   displayedColumns = ['id','title','description','completed','created'];
 
   constructor(
-    public apiService: RestApiService,
+    private apiService: RestApiService,
+    private dialog: MatDialog,
   ) {}
 
   ngOnInit() {
     this.dataSource = new DataTableDataSource(this.apiService);
   }
 
+  addNew() {
+    
+
+    let dialogRef = this.dialog.open(AddComponent, {
+      
+    });
+  }
+  
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
