@@ -3,8 +3,6 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { DataTableItems } from '../../models/dataTableItems.model'
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
-
-
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
@@ -19,15 +17,12 @@ export class AddComponent {
     private fromBuilder: FormBuilder,
     public dialogRef: MatDialogRef<AddComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DataTableItems) {
-
       this.buildForm();
     }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
-
-
 
   buildForm() {
     let formValues = {
@@ -36,8 +31,6 @@ export class AddComponent {
     }
 
     this.form = this.fromBuilder.group(formValues);
-
-
   }
 
   validateForm() {
@@ -54,7 +47,6 @@ export class AddComponent {
     }
   }
 
-
   private markFormGroupTouched(formGroup: FormGroup) {
     (<any>Object).values(formGroup.controls).forEach(control => {
       control.markAsTouched();
@@ -64,22 +56,5 @@ export class AddComponent {
       }
     });
   }
-
-/*
-  getErrorMessage() {
-    return this.formControl.hasError('required') ? 'Required field' :
-      this.formControl.hasError('email') ? 'Not a valid email' :
-        '';
-  }
-
-  onYesClick(): void {
-    this.dialogRef.close(
-      console.log('Add New - Form data = ', this.data)
-    );
-  }
-*/
-
-
-
-
+  
 }

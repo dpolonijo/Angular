@@ -1,28 +1,28 @@
 <h1 mat-dialog-title>Add New</h1>
 <ng-container *ngIf="form">
-<form class="mat-dialog-content" [formGroup]="form" >
+  <form class="mat-dialog-content" [formGroup]="form">
 
     <p>What you must to do?</p>
 
     <div class="form">
-        <mat-form-field>
-            <input matInput placeholder="Title" formControlName="title">
-            <mat-error>Reuqierd</mat-error>
-        </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Title" formControlName="title"> 
+        <mat-error>Reuqierd</mat-error>
+      </mat-form-field> *
     </div>
 
     <div class="form">
-        <mat-form-field>
-            <input matInput placeholder="Description" formControlName="description">
-            <mat-error>Reuqierd</mat-error>
-        </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Description" formControlName="description">
+        <mat-error>Reuqierd</mat-error>
+      </mat-form-field>
     </div>
 
-</form>
+  </form>
 
-<div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">No Thanks</button>
-    <button mat-button  (click)="validateForm()" cdkFocusInitial>Ok</button>
-</div>
+  <div mat-dialog-actions>
+    <button mat-stroked-button color="basic" (click)="onNoClick()">No Thanks</button>
+    <button mat-raised-button color="basic" (click)="validateForm()" cdkFocusInitial>Ok</button>
+  </div>
 
 </ng-container>

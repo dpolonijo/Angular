@@ -1,0 +1,7 @@
+.mat-dialog-content .mat-form-field {
+    width: 300px !important;
+}
+
+.mat-dialog-actions {
+    padding: 20px 0;
+}

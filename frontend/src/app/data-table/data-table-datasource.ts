@@ -13,6 +13,10 @@ import { DataTableItems } from '../models/dataTableItems.model'
  */
 export class DataTableDataSource extends DataSource<DataTableItems> {
   data: DataTableItems[];
+  
+  // To hide console errors
+  //data: DataTableItems[] = [];
+  
   paginator: MatPaginator;
   sort: MatSort;
 
