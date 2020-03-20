@@ -2,8 +2,9 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { DataTableDataSource, DataTableItem } from './data-table-datasource';
+import { DataTableDataSource} from './data-table-datasource';
 import { RestApiService } from '../services/rest-api.service';
+import { DataTableItems } from '../models/dataTableItems.model'
 
 @Component({
   selector: 'app-data-table',
@@ -13,7 +14,7 @@ import { RestApiService } from '../services/rest-api.service';
 export class DataTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<DataTableItem>;
+  @ViewChild(MatTable) table: MatTable<DataTableItems>;
   dataSource: DataTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
