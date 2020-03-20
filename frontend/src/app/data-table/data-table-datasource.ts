@@ -3,9 +3,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+//import { HttpClient } from '@angular/common/http';
 import { RestApiService } from '../services/rest-api.service';
-import { OnInit } from '@angular/core';
+//import { OnInit } from '@angular/core';
 
 
 // TODO: Replace this with your own data model type
@@ -47,7 +47,7 @@ export interface DataTableItem {
  * (including sorting, pagination, and filtering).
  */
 export class DataTableDataSource extends DataSource<DataTableItem> {
-  data: DataTableItem[] = [];
+  data: DataTableItem[];
   paginator: MatPaginator;
   sort: MatSort;
 
@@ -119,8 +119,11 @@ export class DataTableDataSource extends DataSource<DataTableItem> {
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        //case 'name': return compare(a.name, b.name, isAsc);
         case 'id': return compare(+a.id, +b.id, isAsc);
+        case 'title': return compare(+a.title, +b.title, isAsc);
+        case 'description': return compare(+a.description, +b.description, isAsc);
+        case 'completed': return compare(+a.completed, +b.completed, isAsc);
+        case 'created': return compare(+a.created, +b.created, isAsc);
         default: return 0;
       }
     });
