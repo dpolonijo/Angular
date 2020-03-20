@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, ComponentFactoryResolver } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
@@ -22,6 +22,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id','title','description','completed','created'];
 
+  
   constructor(
     private apiService: RestApiService,
     private dialog: MatDialog,
@@ -32,11 +33,15 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   }
 
   addNew() {
-    
-
-    let dialogRef = this.dialog.open(AddComponent, {
-      
+    const dialogRef = this.dialog.open(AddComponent, {
+      width: '500px',
+      data: {}
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dialog Results---', result);
+    });
+    
   }
   
   ngAfterViewInit() {

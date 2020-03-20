@@ -16,6 +16,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AddComponent } from './dialogs/add/add.component';
 import { EditComponent } from './dialogs/edit/edit.component';
 import { DeleteComponent } from './dialogs/delete/delete.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +28,7 @@ import { DeleteComponent } from './dialogs/delete/delete.component';
     DataTableComponent,
     AddComponent,
     EditComponent,
-    DeleteComponent,
+    DeleteComponent,    
   ],
   imports: [
     BrowserModule,
@@ -34,8 +38,12 @@ import { DeleteComponent } from './dialogs/delete/delete.component';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatInputModule,
+    MatFormFieldModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [RestApiService],
   bootstrap: [AppComponent]
