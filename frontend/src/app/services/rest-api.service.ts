@@ -27,6 +27,10 @@ export class RestApiService implements OnInit {
     return this.http.post(this.environment.resturl + '/ToDoLists', data);
   }
 
+  updateStatus(id, status) {
+    return this.http.patch(this.environment.resturl + 'ToDoLists/' + id, { "completed": status });
+  }
+
   
 
 }
