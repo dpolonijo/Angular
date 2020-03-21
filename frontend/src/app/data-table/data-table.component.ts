@@ -7,6 +7,7 @@ import { RestApiService } from '../services/rest-api.service';
 import { DataTableItems } from '../models/dataTableItems.model'
 import { MatDialog } from '@angular/material/dialog';
 import { AddComponent } from '../dialogs/add/add.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-data-table',
@@ -18,6 +19,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<DataTableItems>;
   dataSource: DataTableDataSource;
+  public environment: any;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id','title','description','completed','created'];
@@ -26,6 +28,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   constructor(
     private apiService: RestApiService,
     private dialog: MatDialog,
+    private http: HttpClient
   ) {}
 
   ngOnInit() {
@@ -39,7 +42,18 @@ export class DataTableComponent implements AfterViewInit, OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('Dialog Results---', result);
+      console.log('Dialog Results---', result.value);
+
+      // Save data from dialog to database
+
+      this.apiService.insertData(result.value).subscribe({
+        next: (response: any) => {
+          console.log('Save data response ... ', response);
+        },
+        error: (errorResponse: any) => {
+          console.log('Save data error!', errorResponse);
+        }
+      })
     });
     
   }
