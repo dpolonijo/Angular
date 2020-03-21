@@ -7,11 +7,14 @@ import { RestApiService } from '../services/rest-api.service';
 import { DataTableItems } from '../models/dataTableItems.model'
 import { MatDialog } from '@angular/material/dialog';
 import { AddComponent } from '../dialogs/add/add.component';
+import { DeleteComponent } from '../dialogs/delete/delete.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-data-table',
   templateUrl: './data-table.component.html',
-  styleUrls: ['./data-table.component.css']
+  styleUrls: ['./data-table.component.css'],
+  styles: ['/deep/ .mat-snack-bar-container {background: #39398C}']
 })
 export class DataTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -21,18 +24,19 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   public environment: any;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id','title','description','completed','created'];
-  changeDetectorRefs: any;
-
+  displayedColumns = ['id','title','description','completed','created','delete'];
   
   constructor(
     private apiService: RestApiService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
-    this.dataSource = new DataTableDataSource(this.apiService);
+    this.dataSource = new DataTableDataSource(this.apiService); 
   }
+
+  // INSERT NEW RECORD
 
   addNew() {
     const dialogRef = this.dialog.open(AddComponent, {
@@ -50,7 +54,8 @@ export class DataTableComponent implements AfterViewInit, OnInit {
             response.created = new Date().toLocaleString();
             console.log('Save data response ... ', response);
   
-            // Refresh datatable ----
+            // Refresh datatable - append row to client side
+              // ToDo: blink animation
   
             //this.dataSource.data.push(response);
             //this.ngOnInit();
@@ -63,7 +68,9 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   
             // Workaround but it works!
             this.dataSource.data.unshift(response);
-            this.paginator._changePageSize(this.paginator.pageSize); 
+            this.refreshGrid();
+            
+            this.snackBarMsg('Saved successfully!');
           },
           error: (errorResponse: any) => {
             console.log('Save data error!', errorResponse);
@@ -73,6 +80,8 @@ export class DataTableComponent implements AfterViewInit, OnInit {
       
     });
   }
+
+  // UPDATE STATUS
   
   updateStatus(event, id) {
     console.log('CKBOX EVENT --- ', event);
@@ -86,9 +95,48 @@ export class DataTableComponent implements AfterViewInit, OnInit {
         console.log('Update status error!', errorResponse);
       }
     })
+  }
+  
+  // DELETE RECORD
 
+  deleteRecord(id) {
+    const dialogRef = this.dialog.open(DeleteComponent, {
+      width: '500px',
+      data: {id: id}
+    });
 
+    dialogRef.afterClosed().subscribe(response => {
 
+      if(response) {
+        // Delete record from database
+        this.apiService.deleteRecord(id).subscribe({
+          next: (response: any) => {
+            console.log('Delete record response  --- ', response);
+            if(response.count == 1) {
+             
+              // Remove row from table on the client side
+              const rowIndex = this.dataSource.data.findIndex(x => x.id === id);
+              this.dataSource.data.splice(rowIndex, 1);
+              this.refreshGrid();
+              this.snackBarMsg('Record deleted!')
+            }
+          },
+          error: (errorResponse: any) => {
+            console.log('Delete record error!', errorResponse);
+          }
+        })
+      }
+    });
+  }
+
+  refreshGrid() {
+    this.paginator._changePageSize(this.paginator.pageSize); 
+  }
+
+  snackBarMsg(msg) {
+    this.snackBar.open(msg, null, {
+      duration: 3000,
+    });
   }
 
   ngAfterViewInit() {

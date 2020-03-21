@@ -1,1 +1,12 @@
-<p>delete works!</p>
+<h1 mat-dialog-title>Delete record</h1>
+<ng-container>
+
+    <p>Selected record id = {{data.id}}</p>
+    <p>Are you sure you want to delete this record?</p>
+
+  <div mat-dialog-actions>
+    <button mat-stroked-button color="basic" [mat-dialog-close]="false">No Thanks</button>
+    <button mat-raised-button color="basic"  [mat-dialog-close]="true" cdkFocusInitial>Ok</button>
+  </div>
+
+</ng-container>

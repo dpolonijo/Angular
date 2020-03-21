@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../src/environments/environment';
 
@@ -6,7 +6,7 @@ import { environment } from '../../../src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class RestApiService implements OnInit {
+export class RestApiService {
 
   public environment: any;
   
@@ -14,10 +14,6 @@ export class RestApiService implements OnInit {
   constructor(
     private http: HttpClient
   ) { this.environment = environment}
-
-  ngOnInit() {
-  }
-
 
   getData() {
    return this.http.get(this.environment.resturl + '/ToDoLists');
@@ -28,9 +24,10 @@ export class RestApiService implements OnInit {
   }
 
   updateStatus(id, status) {
-    return this.http.patch(this.environment.resturl + 'ToDoLists/' + id, { "completed": status });
+    return this.http.patch(this.environment.resturl + 'ToDoLists/' + id, {"completed": status});
   }
 
-  
-
+  deleteRecord(id) {
+    return this.http.delete(this.environment.resturl + 'ToDoLists/' + id);
+  }
 }
