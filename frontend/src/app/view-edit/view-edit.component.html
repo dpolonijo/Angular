@@ -30,7 +30,7 @@
 
   <section class="completed-ckb-wrap">
     <span class="completed-label">Completed</span>
-    <mat-checkbox color="primary" class="completed-ckb-details" name="completed" [(ngModel)]="data.completed"
+    <mat-checkbox color="primary" class="completed-ckb-details" name="completed" [(ngModel)]="data.completed" *ngIf="data"
       (change)="updateStatus(id, $event)"></mat-checkbox>
   </section>
 

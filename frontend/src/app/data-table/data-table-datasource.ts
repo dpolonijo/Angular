@@ -13,23 +13,13 @@ import { DataTableItems } from '../models/dataTableItems.model'
  */
 export class DataTableDataSource extends DataSource<DataTableItems> {
   
-  data: DataTableItems[];
-  
-  // To hide console errors
-  //data: DataTableItems[] = [];
+  data: DataTableItems[]=[];
   
   paginator: MatPaginator;
   sort: MatSort;
 
-  constructor(
-    //private apiService: RestApiService,
-
-  ) {
+  constructor() {
     super();
-
-    // Get data from RestApiService to show in table
-   
-    
   }
 
   /**
