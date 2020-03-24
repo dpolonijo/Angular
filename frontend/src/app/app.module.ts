@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -24,6 +23,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ViewEditComponent } from './view-edit/view-edit.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DiscardComponent } from './dialogs/discard/discard.component';
+
 
 
 @NgModule({
@@ -53,7 +53,7 @@ import { DiscardComponent } from './dialogs/discard/discard.component';
     MatCheckboxModule,
     MatIconModule,
     MatSnackBarModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
   ],
   providers: [RestApiService],
   bootstrap: [AppComponent]

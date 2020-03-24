@@ -3,8 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
-import { RestApiService } from '../services/rest-api.service';
 import { DataTableItems } from '../models/dataTableItems.model'
+
 
 /**
  * Data source for the DataTable view. This class should

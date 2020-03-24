@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddComponent } from '../dialogs/add/add.component';
 import { DeleteComponent } from '../dialogs/delete/delete.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-data-table',
@@ -22,31 +23,41 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<DataTableItems>;
-  dataSource: DataTableDataSource;
+  dataSource = new MatTableDataSource();
   public environment: any;
   data: DataTableItems[];
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id','title','description','completed','created','view','delete'];
+
+  
   
   constructor(
     private apiService: RestApiService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar
-  ) { this.dataSource = new DataTableDataSource(); }
+  ) { }
 
   ngOnInit() {
     // Get data from database
     this.apiService.getData().subscribe({
       next: (response: any) => {
-        console.log('response', response);
-          this.dataSource.data = response;
-          this.refreshGrid();
+        console.log('response ... ', response);
+          this.dataSource = new MatTableDataSource(response);
+          //this.refreshGrid();
       },
       error: (errorResponse: any) => {
         console.log('error', errorResponse)
       }
-    })
+    });
+  }
+
+  
+  // Applay filter on table records
+  
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   // INSERT NEW RECORD
@@ -67,7 +78,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
             response.created = new Date().toLocaleString();
             console.log('Save data response ... ', response);
   
-            this.dataSource.data.unshift(response);
+            this.dataSource.data.push(response);
             this.refreshGrid();
             
             this.snackBarMsg('Saved successfully!');
@@ -116,8 +127,8 @@ export class DataTableComponent implements AfterViewInit, OnInit {
             if(response.count == 1) {
              
               // Remove row from table on the client side
-              const rowIndex = this.dataSource.data.findIndex(x => x.id === id);
-              this.dataSource.data.splice(rowIndex, 1);
+              //const rowIndex = this.dataSource.data.findIndex(x => x.id === id);
+              //this.dataSource.data.splice(rowIndex, 1);
               this.refreshGrid();
               this.snackBarMsg('Record deleted!')
             }
@@ -144,6 +155,6 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+    this.dataSource = this.dataSource;
   }
 }
