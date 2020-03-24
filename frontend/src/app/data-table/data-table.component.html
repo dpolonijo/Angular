@@ -23,13 +23,19 @@
     <!-- Completed Column -->
     <ng-container matColumnDef="completed">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Completed</th>
-      <td mat-cell *matCellDef="let row"><mat-checkbox color="primary" [(ngModel)]="row.completed" (change)="updateStatus($event, row.id)"></mat-checkbox></td>
+      <td mat-cell *matCellDef="let row"><mat-checkbox color="primary" class="completed-ckb" [(ngModel)]="row.completed" (change)="updateStatus($event, row.id)"></mat-checkbox></td>
     </ng-container>
 
     <!-- Created Column -->
     <ng-container matColumnDef="created">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Created</th>
       <td mat-cell *matCellDef="let row">{{row.created | date:'dd-MM-yyyy  HH:mm'}}</td>
+    </ng-container>
+
+    <!-- Delete Column -->
+    <ng-container matColumnDef="view">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>View/Edit</th>
+      <td mat-cell *matCellDef="let row;"><a class="edit-btn" routerLink="details/{{row.id}}" title="View or edit record details"><mat-icon>edit</mat-icon></a></td>
     </ng-container>
 
     <!-- Delete Column -->

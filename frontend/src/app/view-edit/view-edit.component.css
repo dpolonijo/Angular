@@ -1,0 +1,95 @@
+header h2 {
+    background: #F2F2F2;
+    height: 57px;
+    padding: 14px 20px;
+    font-size: 1em;
+    border-bottom: solid 1px #E0E0E0;
+    color: #9B9A9A;
+    text-shadow: 1px 1px #fff;
+}
+
+.edit-form-wrap {
+    width: 400px;
+    margin-left: 20px;
+}
+  
+.full-width {
+    width: 90%;
+}
+
+.required-star {
+    margin-left:10px;
+}
+
+.completed-ckb-wrap {
+    margin-top: 20px;
+}
+
+.completed-ckb-details {
+    margin-left: 15px;
+}
+
+.completed-label {
+    color: #a7a7a7;
+}
+
+::ng-deep .completed-ckb-wrap .mat-checkbox-inner-container {
+    width: 30px !important;
+    height: 30px !important;
+}
+
+.delete-edit-btn, .save-edit-btn {
+    margin-top: 30px;
+    padding: 3px 23px;
+    background: #b56464;
+    color: #fff;
+}
+
+.save-edit-btn {
+    background: #3F51B5;
+    margin-left: 15px;
+    padding: 3px 28px;
+}
+
+.save-edit-btn.mat-disabled {
+    background: #f2f2f2;
+    color: #ccc;
+}
+
+.save-edit-btn.mat-disabled:hover {
+    background: #f2f2f2;
+    cursor: not-allowed;
+}
+
+.delete-edit-btn:hover {
+    background: #b65555;
+}
+
+.save-edit-btn:hover {
+    background: #5564BF;
+}
+
+::ng-deep .mat-form-field-disabled .mat-form-field-underline {
+    border-bottom: solid 1px #E0E0E0;
+}
+
+.mat-input-element:disabled {
+    color: #a7a9b2;
+}
+
+.edit-mode-switch-wrap {
+    position: absolute;
+    right: 27px;
+    top: 78px;
+}
+
+.edit-mode-switch-label {
+    margin: 0;
+    color: #898888;
+    text-shadow: 1px 1px #fff;
+    font-size: 1.1em;
+}
+
+.mat-slide-toggle {
+    margin-left: 12px;
+}

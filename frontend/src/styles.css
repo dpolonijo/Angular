@@ -11,3 +11,10 @@ body {
 .mat-dialog-actions {
     padding: 20px 0 !important;
 }
+
+.add-new-btn, .back-btn {
+    position: absolute !important;
+    right: 20px;
+    top: 18px;
+    background: #fff;
+}

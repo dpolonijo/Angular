@@ -1,0 +1,49 @@
+<header>
+  <h2>View or edit details for record id = {{id}}</h2>
+  <!-- <button mat-stroked-button color="basic" class="back-btn" routerLink=""> -->
+  <button mat-stroked-button color="basic" class="back-btn" (click)="backAction()" >
+    <mat-icon>arrow_back_ios</mat-icon>Back
+  </button>
+
+  <section class="edit-mode-switch-wrap">
+    <p class="edit-mode-switch-label">Edit Mode</p>
+    <mat-slide-toggle class="edit-mode-switch" color="primary" (change)="isEditMode($event)">
+    </mat-slide-toggle>
+  </section>
+</header>
+
+<div class="edit-form-wrap">
+  <form class="mat-dialog-content" [formGroup]="form" *ngIf="form">
+    <div class="form">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Title" formControlName="title" autocomplete="off"> 
+        <mat-error>Reuqierd</mat-error>
+      </mat-form-field> <span *ngIf="editMode" class="required-star">*</span>
+    </div>
+
+    <div class="form">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Description" formControlName="description" autocomplete="off">
+      </mat-form-field>
+    </div>
+  </form>
+
+  <section class="completed-ckb-wrap">
+    <span class="completed-label">Completed</span>
+    <mat-checkbox color="primary" class="completed-ckb-details" name="completed" [(ngModel)]="data.completed"
+      (change)="updateStatus(id, $event)"></mat-checkbox>
+  </section>
+
+  <button mat-stroked-button color="basic" class="delete-edit-btn" (click)="deleteRecord(id)">
+    <mat-icon>delete</mat-icon> Delete
+  </button>
+
+  <button mat-stroked-button [ngClass]="saveForm ? '' : 'mat-disabled'" class="save-edit-btn" [disabled]="!saveForm" (click)="saveFormData('save-from-button')">
+    <mat-icon>save_alt</mat-icon> Save
+  </button>
+</div>
+
+
+
+
+

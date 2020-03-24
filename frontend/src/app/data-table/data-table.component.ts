@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild, ComponentFactoryResolver } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
@@ -14,7 +14,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   selector: 'app-data-table',
   templateUrl: './data-table.component.html',
   styleUrls: ['./data-table.component.css'],
-  styles: ['/deep/ .mat-snack-bar-container {background: #39398C}']
+  styles: [
+    `/deep/ .mat-sort-header-button {text-shadow: 1px 1px #fff}`
+  ]
 })
 export class DataTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -24,7 +26,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   public environment: any;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id','title','description','completed','created','delete'];
+  displayedColumns = ['id','title','description','completed','created','view','delete'];
   
   constructor(
     private apiService: RestApiService,
@@ -90,6 +92,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
     this.apiService.updateStatus(id, event.checked).subscribe({
       next: (response: any) => {
         console.log('Update status response  --- ', response);
+        this.snackBarMsg('Status changed!')
       },
       error: (errorResponse: any) => {
         console.log('Update status error!', errorResponse);
@@ -133,6 +136,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
     this.paginator._changePageSize(this.paginator.pageSize); 
   }
 
+  // ToDo: Separate this as global service
   snackBarMsg(msg) {
     this.snackBar.open(msg, null, {
       duration: 3000,

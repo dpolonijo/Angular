@@ -2,13 +2,6 @@
   width: 100%;
 }
 
-.add-new-btn {
-  position: absolute;
-  right: 20px;
-  top: 18px;
-  background: #fff;
-}
-
 th.mat-header-cell {
   font-size: 1.1em !important;
   color: #9b9a9a;
@@ -16,29 +9,39 @@ th.mat-header-cell {
 
 tr.mat-header-row {
   background: #f2f2f2;
-  /* border-bottom: solid 2px #dadada; */
 }
 
-/* .mat-sort-header-button {
-  text-shadow: 1px 1px #fff !important;
-} */
-
-/* .mat-row:nth-child(even){
-  background-color:#f6f6f6;
-  }
-
-.mat-row:nth-child(odd){
-  background-color:#FDFDFB;
-} 
-*/
-
-.delete-btn {
+.delete-btn, .edit-btn {
   padding: 12px 2px 0px 2px;
   cursor: pointer;
 }
 
 .delete-btn:hover {
-  color: #c35151;
+  color: #9e3535;
 }
+
+.edit-btn:hover {
+  color: #3F51B5;
+}
+
+.delete-btn {
+  margin-left: 8px;
+}
+
+.edit-btn {
+  color: #000;
+  margin-left: 15px;
+}
+
+.completed-ckb {
+  margin-left: 25px;
+}
+
+::ng-deep .mat-checkbox-inner-container {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+
 
 

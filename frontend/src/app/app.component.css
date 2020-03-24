@@ -1,0 +1,13 @@
+header h2 {
+    margin: 0;
+    height: 70px;
+    background: #39398c;
+    color: #fff;
+    font-size: 2em;
+    padding: 20px;
+}
+
+::ng-deep .mat-snack-bar-container {
+    background: #3F51B5 !important;
+    color: #fff;
+}

@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Discard changes</h1>
+
+<ng-container>
+
+    <p>Form change detected!</p>
+    <p>Do you want to discard or save changes?</p>
+
+  <div mat-dialog-actions>
+    <button mat-stroked-button color="basic" [mat-dialog-close]="false">Discard</button>
+    <button mat-raised-button color="basic"  [mat-dialog-close]="true" cdkFocusInitial>Save</button>
+  </div>
+
+</ng-container>

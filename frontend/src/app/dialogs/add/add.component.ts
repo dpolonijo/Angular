@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DataTableItems } from '../../models/dataTableItems.model'
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
@@ -47,6 +47,7 @@ export class AddComponent {
     }
   }
 
+  // Show validation error on click 'ok' button, without touch of form inputs
   private markFormGroupTouched(formGroup: FormGroup) {
     (<any>Object).values(formGroup.controls).forEach(control => {
       control.markAsTouched();
