@@ -22,22 +22,14 @@ export class DataTableDataSource extends DataSource<DataTableItems> {
   sort: MatSort;
 
   constructor(
-    private apiService: RestApiService,
+    //private apiService: RestApiService,
 
   ) {
     super();
 
     // Get data from RestApiService to show in table
    
-    this.apiService.getData().subscribe({
-      next: (response: any) => {
-        console.log('response', response);
-          this.data = response;
-      },
-      error: (errorResponse: any) => {
-        console.log('error', errorResponse)
-      }
-    })
+    
   }
 
   /**

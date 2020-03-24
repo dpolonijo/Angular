@@ -24,6 +24,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatTable) table: MatTable<DataTableItems>;
   dataSource: DataTableDataSource;
   public environment: any;
+  
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id','title','description','completed','created','view','delete'];
@@ -32,10 +33,21 @@ export class DataTableComponent implements AfterViewInit, OnInit {
     private apiService: RestApiService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar
-  ) {}
+  ) {this.dataSource = new DataTableDataSource(); 
+    this.apiService.getData().subscribe({
+      next: (response: any) => {
+        console.log('response', response);
+          this.dataSource.data = response;
+      },
+      error: (errorResponse: any) => {
+        console.log('error', errorResponse)
+      }
+    })}
 
   ngOnInit() {
-    this.dataSource = new DataTableDataSource(this.apiService); 
+    
+
+    
   }
 
   // INSERT NEW RECORD
