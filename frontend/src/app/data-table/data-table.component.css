@@ -101,5 +101,9 @@ tr.mat-header-row {
   font-size: 26px;
 }
 
+.mat-row:hover {
+  background-color: #F7F7F7;
+}
+
 
 

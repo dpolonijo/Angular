@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild, ɵConsole } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
@@ -36,7 +36,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
     private apiService: RestApiService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
-  ) { }
+  ) {}
 
   ngOnInit() {
     // Get data from database
@@ -46,11 +46,15 @@ export class DataTableComponent implements AfterViewInit, OnInit {
         this.dataSource = new MatTableDataSource(response);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
+
+        // Filter by specific columns
+        this.dataSource.filterPredicate = (data: any, filter) => (data.description.trim().toLowerCase().indexOf(filter.trim().toLowerCase()) !== -1 || data.title.trim().toLowerCase().indexOf(filter.trim().toLowerCase()) !== -1);
       },
       error: (errorResponse: any) => {
         console.log('error', errorResponse)
       }
     });
+    
   }
 
   // INSERT NEW RECORD
@@ -138,7 +142,17 @@ export class DataTableComponent implements AfterViewInit, OnInit {
 
   // FILTER RECORDS
 
-  applyFilter(event: Event) {
+  applyFilter(event: any) {
+
+    // Fix for filtering empty columns (description can be empty)
+    this.dataSource.data.forEach(element => {
+      for (const key in Object(element)) {
+        if (!element[key] || element[key] === null) {
+          element[key] = '';
+        }
+      }
+    });
+
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
