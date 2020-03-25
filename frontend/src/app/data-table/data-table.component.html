@@ -1,9 +1,9 @@
 <button mat-stroked-button color="basic" class="add-new-btn" (click)="addNew()">Add New</button>
 
-<mat-form-field>
+<!-- <mat-form-field class="filter-wrap">
   <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)">
-</mat-form-field>
+  <input matInput (keyup)="applyFilter($event)" autocomplete="off" placeholder="title or description">
+</mat-form-field> -->
 
 <div class="mat-elevation-z8">
   <table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Elements" matSortActive="id" matSortDirection="desc">

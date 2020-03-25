@@ -42,6 +42,38 @@ tr.mat-header-row {
   height: 20px !important;
 }
 
+.filter-wrap {
+  position: absolute;
+  top: 15px;
+  right: 130px;
+}
+
+/* Filter styles */
+
+::ng-deep .filter-wrap.mat-focused *{
+  /*change color of label*/
+  color: #ccc !important;
+ }
+
+ ::ng-deep .filter-wrap .mat-form-field-underline {
+  /*change color of underline*/
+  background-color: #999 !important;
+} 
+
+::ng-deep .filter-wrap .mat-form-field-ripple {
+ /*change color of underline when focused*/
+ background-color: #fff !important;;
+}
+
+
+ ::ng-deep .filter-wrap.mat-form-field-appearance-legacy .mat-form-field-label {
+   color: #999 !important;
+ }
+
+ .filter-wrap ::placeholder {
+  color:#7C7C7C;
+  /* opacity: 1; */
+}
 
 
 
