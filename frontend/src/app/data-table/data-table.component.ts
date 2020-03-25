@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { DataTableDataSource} from './data-table-datasource';
+//import { DataTableDataSource} from './data-table-datasource';
 import { RestApiService } from '../services/rest-api.service';
 import { DataTableItems } from '../models/dataTableItems.model'
 import { MatDialog } from '@angular/material/dialog';
@@ -10,6 +10,8 @@ import { AddComponent } from '../dialogs/add/add.component';
 import { DeleteComponent } from '../dialogs/delete/delete.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
+import { SelectionModel } from '@angular/cdk/collections';
+
 
 @Component({
   selector: 'app-data-table',
@@ -26,13 +28,11 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   dataSource = new MatTableDataSource();
   public environment: any;
   data: DataTableItems[];
+  selection = new SelectionModel<Element>(true, []);
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id','title','description','completed','created','view','delete'];
-  //columnsToDisplay: string[] = this.displayedColumns.slice();
 
-  
-  
   constructor(
     private apiService: RestApiService,
     private dialog: MatDialog,
@@ -52,13 +52,6 @@ export class DataTableComponent implements AfterViewInit, OnInit {
         console.log('error', errorResponse)
       }
     });
-  }
-
-  // Applay filter on table records
-  
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   // INSERT NEW RECORD
@@ -129,15 +122,10 @@ export class DataTableComponent implements AfterViewInit, OnInit {
             if(response.count == 1) {
              
               // Remove row from table on the client side
-              const rowIndex = this.dataSource.data.findIndex(x => x === id);
+              const rowIndex = this.dataSource.data.findIndex(x => x['id'] === id);
               this.dataSource.data.splice(rowIndex, 1);
-
-              // const index = this.dataSource.data.indexOf(id);
-              // this.dataSource.data.splice(index, 1);
-              
               this.dataSource.filter = "";
 
-              this.refreshGrid();
               this.snackBarMsg('Record deleted!')
             }
           },
@@ -149,8 +137,11 @@ export class DataTableComponent implements AfterViewInit, OnInit {
     });
   }
 
-  refreshGrid() {
-    this.paginator._changePageSize(this.paginator.pageSize); 
+  // FILTER RECORDS
+  
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
   // ToDo: Separate this as global service
