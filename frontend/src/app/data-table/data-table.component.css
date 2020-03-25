@@ -48,7 +48,9 @@ tr.mat-header-row {
   right: 130px;
 }
 
-/* Filter styles */
+/* Filter styles -------------*/
+
+/* I'm not very happy how it looks. I'll work on this later */
 
 ::ng-deep .filter-wrap.mat-focused *{
   /*change color of label*/
@@ -72,7 +74,31 @@ tr.mat-header-row {
 
  .filter-wrap ::placeholder {
   color:#7C7C7C;
-  /* opacity: 1; */
+}
+
+/* End of Filter styles -------------*/
+
+::ng-deep .mat-checkbox-inner-container {
+  margin-top: 10px !important;
+}
+
+.mat-elevation-z8 {
+  position: relative;
+}
+
+.multiple-delete-btn {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  cursor: pointer;
+}
+
+.multiple-delete-btn:hover {
+  color: #9e3535;
+}
+
+.multiple-delete-btn .mat-icon {
+  font-size: 26px;
 }
 
 

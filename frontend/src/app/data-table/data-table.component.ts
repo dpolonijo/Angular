@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, ɵConsole } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
@@ -12,7 +12,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 
-
 @Component({
   selector: 'app-data-table',
   templateUrl: './data-table.component.html',
@@ -25,18 +24,18 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<DataTableItems>;
-  dataSource = new MatTableDataSource();
+  public dataSource = new MatTableDataSource();
   public environment: any;
-  data: DataTableItems[];
-  selection = new SelectionModel<Element>(true, []);
+  public data: DataTableItems[];
+  public selection = new SelectionModel(true, []);
+  public multipleSelect: boolean = false;
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id','title','description','completed','created','view','delete'];
+  displayedColumns = ['multiple_select', 'id', 'title', 'description', 'completed', 'created', 'view', 'delete'];
 
   constructor(
     private apiService: RestApiService,
     private dialog: MatDialog,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit() {
@@ -44,9 +43,9 @@ export class DataTableComponent implements AfterViewInit, OnInit {
     this.apiService.getData().subscribe({
       next: (response: any) => {
         console.log('response ... ', response);
-          this.dataSource = new MatTableDataSource(response);
-          this.dataSource.sort = this.sort;
-          this.dataSource.paginator = this.paginator;
+        this.dataSource = new MatTableDataSource(response);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
       },
       error: (errorResponse: any) => {
         console.log('error', errorResponse)
@@ -65,8 +64,8 @@ export class DataTableComponent implements AfterViewInit, OnInit {
     dialogRef.afterClosed().subscribe(result => {
 
       // Save data from dialog to database
-      
-      if(result){
+
+      if (result) {
         this.apiService.insertData(result.value).subscribe({
           next: (response: any) => {
             response.created = new Date().toLocaleString();
@@ -75,7 +74,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
             // Append row to top of grid
             this.dataSource.data.push(response);
             this.dataSource.filter = "";
-            
+
             this.snackBarMsg('Saved successfully!');
           },
           error: (errorResponse: any) => {
@@ -83,12 +82,12 @@ export class DataTableComponent implements AfterViewInit, OnInit {
           }
         })
       }
-      
+
     });
   }
 
   // UPDATE STATUS
-  
+
   updateStatus(event, id) {
     console.log('CKBOX EVENT --- ', event);
     console.log('CKBOX ID  --- ', id);
@@ -103,24 +102,24 @@ export class DataTableComponent implements AfterViewInit, OnInit {
       }
     })
   }
-  
+
   // DELETE RECORD
 
   deleteRecord(id) {
     const dialogRef = this.dialog.open(DeleteComponent, {
       width: '500px',
-      data: {id: id}
+      data: { id: id }
     });
 
     dialogRef.afterClosed().subscribe(response => {
 
-      if(response) {
+      if (response) {
         // Delete record from database
         this.apiService.deleteRecord(id).subscribe({
           next: (response: any) => {
             console.log('Delete record response  --- ', response);
-            if(response.count == 1) {
-             
+            if (response.count == 1) {
+
               // Remove row from table on the client side
               const rowIndex = this.dataSource.data.findIndex(x => x['id'] === id);
               this.dataSource.data.splice(rowIndex, 1);
@@ -138,10 +137,71 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   }
 
   // FILTER RECORDS
-  
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  // MULTIPLE DELETE  
+
+  removeSelectedRows() {
+
+    // Check if one or more checkboxes are selected
+    this.selection.selected.forEach(item => {
+      if (item) {
+        this.multipleSelect = true;
+      }
+    });
+
+    if (this.multipleSelect) {
+      const dialogRef = this.dialog.open(DeleteComponent, {
+        width: '500px',
+        data: { multipleDelete: 1 }
+      });
+
+      dialogRef.afterClosed().subscribe(response => {
+        if (response) {
+          // Delete record/s from database
+          this.selection.selected.forEach(item => {
+            this.apiService.deleteRecord(item.id).subscribe({
+              next: (response: any) => {
+                console.log('Multiple delete response', response);
+
+                // Delete record/s from grid
+                let index: number = this.dataSource.data.findIndex(d => d === item);
+                this.dataSource.data.splice(index, 1);
+                this.dataSource = new MatTableDataSource(this.dataSource.data);
+                this.selection = new SelectionModel(true, []);
+
+                // Enable sorting and pagination after dataSource reInitialization
+                this.dataSource.sort = this.sort;
+                this.dataSource.paginator = this.paginator;
+
+                this.snackBarMsg('Records deleted!');
+                this.multipleSelect = false;
+              },
+              error: (errorResponse: any) => {
+                console.log('Multiple delete error!', errorResponse);
+              }
+            });
+          });
+        }
+      });
+    }
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+      this.selection.clear() :
+      this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
   }
 
   // ToDo: Separate this as global service

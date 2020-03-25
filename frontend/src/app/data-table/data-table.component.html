@@ -5,8 +5,35 @@
   <input matInput (keyup)="applyFilter($event)" autocomplete="off" placeholder="title or description">
 </mat-form-field>
 
+
+
 <div class="mat-elevation-z8">
+  
+  <span (click)="removeSelectedRows()" class="multiple-delete-btn" title="Multiple delete action">
+    <mat-icon>delete_forever</mat-icon>
+  </span>
+
   <table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Elements" matSortActive="id" matSortDirection="desc">
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="multiple_select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()"
+                      color="primary"
+                      id="main-delete-checkbox">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation();"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)"
+                      color="primary"
+                      >
+        </mat-checkbox>
+      </td>
+    </ng-container>
 
     <!-- Id Column -->
     <ng-container matColumnDef="id">

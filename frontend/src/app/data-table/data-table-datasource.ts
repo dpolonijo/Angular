@@ -1,3 +1,9 @@
+
+
+/*########################################################*/ 
+/* THIS FILE IS NOT IN USE. ONLY FOR TEMPLATE. IT IS ANOTHER WAY TO HANDLE MAT-DATA-TABLES */ 
+/*########################################################*/ 
+
 import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';

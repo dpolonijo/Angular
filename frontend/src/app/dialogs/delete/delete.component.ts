@@ -8,6 +8,6 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 })
 export class DeleteComponent {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { id: number }) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { id: number, multipleDelete: number }) { }
 
 }
