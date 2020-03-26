@@ -15,12 +15,13 @@ This showcase includes:
 	<li>Filter table (search-box) by specific columns</li>
 	<li>Custom fiter of specific column from drop-down menu</li>
 	<li>Pagination</li>
-	<li>view/edit mode for edit record detail</li>
+	<li>View/edit mode for edit record details</li>
 </ul>
 
 # My current development environment
 
 <ul>
+    <li>Windows 10 Pro: 1809</li>
     <li>VS Code: 1.43.2</li>
     <li>Node.js: 12.16.1</li>
     <li>Angular: 9.0.6</li>
@@ -40,7 +41,7 @@ The first few steps at the beggining of the list represent setting of required d
 
 2. Install Angular CLI by entering this command in your terminal "npm install -g @angular/cli".
 
-3. Make sure you have installed and started MySql server. Note: You can use other databases like MS SQL, Oracle... but then you must define it in datasource.json in backend folder of root application directory.  
+3. Make sure you have installed and started MySql server. Note: You can use other databases like MS SQL, Oracle... but then you must define it in datasource.json file in backend folder of root application directory.  
 
 4. If not yet, install git on your computer and check if it works by typing "git" in your terminal window.
 
@@ -58,8 +59,8 @@ The first few steps at the beggining of the list represent setting of required d
 9. From your termanal window navigate to path "['root_folder']/backend". Type "npm install" and press Enter. These two steps will install all necessary project library dependencies.
 
 10. Navigate to path "['root_folder']/backend/server". Type "node server.js" and press Enter, to start backen server. 
-    If everything is fine you shoud see the messages:
-	Web server listening at: http://localhost:3000
+    If everything is fine you shoud see the messages:</br>
+	Web server listening at: http://localhost:3000</br>
 	Browse your REST API at http://localhost:3000/explorer
 
 11. Open new terminal window (don't close existing) and navigate to path "['root_folder']/frontend/". Run command "ng-serve -o". 
