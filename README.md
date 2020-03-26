@@ -18,14 +18,17 @@ This showcase includes:
 
 # My current development environment
 
-Windows 10 <br/>
-VS Code: 1.43.2 <br/>
-Node.js: 12.16.1 <br/>
-Angular: 9.0.6 <br/>
-Angular material: 9.1.3 <br/>
-Loopback 3.22.0 <br/>
-MySQL Community Server: 5.7.19 <br/>
-HeidiSQL: 9.4.0.5125 <br/>
+<ul>
+    <li>VS Code: 1.43.2</li>
+    <li>Node.js: 12.16.1</li>
+    <li>Angular: 9.0.6</li>
+    <li>Angular material: 9.1.3</li>
+    <li>Loopback 3.22.0</li>
+    <li>MySQL Community Server: 5.7.19</li>
+    <li>HeidiSQL: 9.4.0.5125</li>
+<ul>
+
+
 
 
 # Setup, build and run application on localhost
