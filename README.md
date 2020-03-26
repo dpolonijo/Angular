@@ -7,14 +7,16 @@ For backend I used Node.js with Loopback (ORM) as middleware between Rest-Api se
 This project contains all the necessary (frontend + backend) parts in separated folders, and can be tested in a local environment.
 
 This showcase includes: 
-	- examples of adding new records through Pop-Up modal dialog, with basic validation using Angular Reactive Forms.
-	- delete record with confirmation dialog
-	- delete all or multiple selected records
-	- sorting table (ASC/DESC) by specific columns
-	- filter table (search-box) by specific columns
-	- custom fiter of specific column from drop-down menu
-	- pagination
-	- view/edit mode for edit record detail
+<ul>
+	<li>Examples of adding new records through Pop-Up modal dialog, with basic validation using Angular Reactive Forms</li>
+	<li>Delete record with confirmation dialog</li>
+	<li>Delete all or multiple selected records</li>
+	<li>Sorting table (ASC/DESC) by specific columns</li>
+	<li>Filter table (search-box) by specific columns</li>
+	<li>Custom fiter of specific column from drop-down menu</li>
+	<li>Pagination</li>
+	<li>view/edit mode for edit record detail</li>
+</ul>
 
 # My current development environment
 
@@ -26,10 +28,7 @@ This showcase includes:
     <li>Loopback 3.22.0</li>
     <li>MySQL Community Server: 5.7.19</li>
     <li>HeidiSQL: 9.4.0.5125</li>
-<ul>
-
-
-
+</ul>
 
 # Setup, build and run application on localhost
 
