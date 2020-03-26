@@ -45,7 +45,7 @@ The first few steps at the beggining of the list represent setting of required d
 4. If not yet, install git on your computer and check if it works by typing "git" in your terminal window.
 
 5. Run to_do_list.sql script from root folder of this project. You can import file or run script from any database management client (HeidiSQL, PHPMyAdmin, MySQL Workbench, DBeaver...). 
-   Make sure that after this proces database "to_do" and table "to_do_list" must be created.
+   Make sure that after this process database "to_do" and table "to_do_list" must be created.
 
 6. Copy/clone this project from github to your local computer by typing "git clone https://github.com/dpolonijo/toDoApp.git" in your console.
    Project will appear in folder where you were positioned before you entered this command as new folder named "toDoApp". This is root project folder.
