@@ -16,19 +16,19 @@ This showcase includes:
 	- pagination
 	- view/edit mode for edit record detail
 
-# MY CURRENT DEVELOPMENT ENVIRONMENT
+# My current development environment
 
-Windows 10
-VS Code: 1.43.2
-Node.js: 12.16.1
-Angular: 9.0.6
-Angular material: 9.1.3
-Loopback 3.22.0
-MySQL Community Server: 5.7.19
-HeidiSQL: 9.4.0.5125
+Windows 10 <br/>
+VS Code: 1.43.2 <br/>
+Node.js: 12.16.1 <br/>
+Angular: 9.0.6 <br/>
+Angular material: 9.1.3 <br/>
+Loopback 3.22.0 <br/>
+MySQL Community Server: 5.7.19 <br/>
+HeidiSQL: 9.4.0.5125 <br/>
 
 
-# SETUP, BUILD AND RUN APPLICATION ON LOCALHOST
+# Setup, build and run application on localhost
 
 To start this application on your computer please follow these steps.
 The firt few steps at the beggining of the list represent setting of required development environment. 
