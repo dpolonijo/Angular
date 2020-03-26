@@ -29,6 +29,8 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   public data: DataTableItems[];
   public selection = new SelectionModel(true, []);
   public multipleSelect: boolean = false;
+  public defaultSelectVal: number = 1;
+  public completedFilterValue: string = "all";
 
   displayedColumns = ['multiple_select', 'id', 'title', 'description', 'completed', 'created', 'view', 'delete'];
 
@@ -36,7 +38,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
     private apiService: RestApiService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
-  ) {}
+  ) { }
 
   ngOnInit() {
     // Get data from database
@@ -47,14 +49,19 @@ export class DataTableComponent implements AfterViewInit, OnInit {
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
 
-        // Filter by specific columns
-        this.dataSource.filterPredicate = (data: any, filter) => (data.description.trim().toLowerCase().indexOf(filter.trim().toLowerCase()) !== -1 || data.title.trim().toLowerCase().indexOf(filter.trim().toLowerCase()) !== -1);
+        // if(this.completedFilterValue != 0){
+        //   this.dataSource.filterPredicate = (data: any, filter: string) => data.completed.indexOf(filter) != -1;
+        // }
+        // else {
+        //   // Filter by title or decription
+        //   this.dataSource.filterPredicate = (data: any, filter) => (data.description.trim().toLowerCase().indexOf(filter.trim().toLowerCase()) !== -1 || data.title.trim().toLowerCase().indexOf(filter.trim().toLowerCase()) !== -1);
+        // }
+
       },
       error: (errorResponse: any) => {
         console.log('error', errorResponse)
       }
     });
-    
   }
 
   // INSERT NEW RECORD
@@ -142,19 +149,44 @@ export class DataTableComponent implements AfterViewInit, OnInit {
 
   // FILTER RECORDS
 
-  applyFilter(event: any) {
+  applyFilter(event, filterType) {
 
-    // Fix for filtering empty columns (description can be empty)
-    this.dataSource.data.forEach(element => {
-      for (const key in Object(element)) {
-        if (!element[key] || element[key] === null) {
-          element[key] = '';
+    // Filter records by title or description
+    if (filterType == 'text-filter') {
+      // Fix for filtering empty columns (description can be empty)
+      this.dataSource.data.forEach(element => {
+        for (const key in Object(element)) {
+          if (!element[key] || element[key] === null) {
+            element[key] = '';
+          }
         }
-      }
-    });
+      });
 
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+      const filterValue = (event.target as HTMLInputElement).value;
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+
+      this.dataSource.filterPredicate = (data: any, filter) => (data.description.trim().toLowerCase().indexOf(filter.trim().toLowerCase()) !== -1 || data.title.trim().toLowerCase().indexOf(filter.trim().toLowerCase()) !== -1);
+    }
+
+    // Filter records by changing status from dropdown
+    if (filterType == 'select-filter') {
+        this.completedFilterValue = event.value;
+        
+        switch(this.completedFilterValue) {
+          case "all":
+            this.dataSource.filter = '';
+            break;
+          case "completed":
+            this.dataSource.filter = 'true';
+            break;
+            case "uncompleted":
+              this.dataSource.filter = 'false';
+              break;
+          default:
+            this.dataSource.filter = '';
+        }
+    }
+
   }
 
   // MULTIPLE DELETE  
@@ -217,6 +249,8 @@ export class DataTableComponent implements AfterViewInit, OnInit {
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
+
+  // FLASH MESSAGES - SNACKBAR
 
   // ToDo: Separate this as global service
   snackBarMsg(msg) {

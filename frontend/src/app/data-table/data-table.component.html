@@ -2,7 +2,16 @@
 
 <mat-form-field class="filter-wrap">
   <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" autocomplete="off" placeholder="title or description">
+  <input matInput (keyup)="applyFilter($event, 'text-filter')" autocomplete="off" placeholder="title or description">
+</mat-form-field>
+
+<mat-form-field class="completed-select">
+  <mat-label>Completed</mat-label>
+  <mat-select (selectionChange)="applyFilter($event, 'select-filter')">
+    <mat-option value = "all">All</mat-option>
+    <mat-option value = "completed">Completed</mat-option>
+    <mat-option value = "uncompleted">Uncompleted</mat-option>
+  </mat-select>
 </mat-form-field>
 
 

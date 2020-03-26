@@ -23,6 +23,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ViewEditComponent } from './view-edit/view-edit.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DiscardComponent } from './dialogs/discard/discard.component';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -54,6 +55,7 @@ import { DiscardComponent } from './dialogs/discard/discard.component';
     MatIconModule,
     MatSnackBarModule,
     MatSlideToggleModule,
+    MatSelectModule
   ],
   providers: [RestApiService],
   bootstrap: [AppComponent]

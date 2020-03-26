@@ -42,10 +42,14 @@ tr.mat-header-row {
   height: 20px !important;
 }
 
-.filter-wrap {
+.filter-wrap, .completed-select {
   position: absolute;
   top: 15px;
   right: 130px;
+}
+
+.completed-select{
+  right: 330px;
 }
 
 /* Filter styles -------------*/
@@ -73,7 +77,7 @@ tr.mat-header-row {
  }
 
  .filter-wrap ::placeholder {
-  color:#7C7C7C;
+  color:#A2A2A2;
 }
 
 /* End of Filter styles -------------*/
@@ -104,6 +108,32 @@ tr.mat-header-row {
 .mat-row:hover {
   background-color: #F7F7F7;
 }
+
+/* Completed dropdown styles */
+
+::ng-deep .completed-select .mat-select-arrow, 
+::ng-deep .completed-select.mat-form-field-type-mat-select .mat-form-field-label {
+  color: #999;
+}
+
+::ng-deep .completed-select .mat-form-field-underline {
+  /*change color of underline*/
+  background-color: #999 !important;
+}
+
+::ng-deep .completed-select .mat-select-value-text {
+  color: #fff !important;
+
+} 
+::ng-deep .completed-select.mat-focused *, .completed-select .mat-focused.mat-form-field-underline * {
+  color: #fff !important;
+}
+
+::ng-deep .completed-select .mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: #999 !important;;
+ }
+
 
 
 
