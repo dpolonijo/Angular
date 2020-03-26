@@ -33,7 +33,7 @@ This showcase includes:
 # Setup, build and run application on localhost
 
 To start this application on your computer please follow these steps.
-The firt few steps at the beggining of the list represent setting of required development environment. 
+The first few steps at the beggining of the list represent setting of required development environment. 
 
 1. Download and install node.js from "https://nodejs.org"
    You can check the successful installation by typing "node -v" in the termminal/comand prompt window.
