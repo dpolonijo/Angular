@@ -36,9 +36,9 @@ To start this application on your computer please follow these steps.
 The firt few steps at the beggining of the list represent setting of required development environment. 
 
 1. Download and install node.js from "https://nodejs.org"
-   You can check the successful installation by typing "node -v" in the termminal/comand prompt window
+   You can check the successful installation by typing "node -v" in the termminal/comand prompt window.
 
-2. Install Angular CLI by entering this command in your terminal "npm install -g @angular/cli"
+2. Install Angular CLI by entering this command in your terminal "npm install -g @angular/cli".
 
 3. Make sure you have installed and started MySql server. Note: You can use other databases like MS SQL, Oracle... but then you must define it in datasource.json in backend folder of root application directory.  
 
@@ -49,7 +49,7 @@ The firt few steps at the beggining of the list represent setting of required de
 
 6. Copy/clone this project from github to your local computer by typing "git clone https://github.com/dpolonijo/toDoApp.git" in your console.
    Project will appear in folder where you were positioned before you entered this command as new folder named "toDoApp". This is root project folder.
-   Example: "C:\Projects\toDoApp\"
+   Example: "C:\Projects\toDoApp\".
 
 7. From your termanal window navigate to path "['root_folder']/frontend". "['root_folder']" represents path of your root application folder from the above step.
 
@@ -63,7 +63,7 @@ The firt few steps at the beggining of the list represent setting of required de
 	Browse your REST API at http://localhost:3000/explorer
 
 11. Open new terminal window (don't close existing) and navigate to path "['root_folder']/frontend/". Run command "ng-serve -o". 
-	After compiling and build process application should open in your default web browser on address "http://localhost:4200"
+	After compiling and build process application should open in your default web browser on address "http://localhost:4200".
 
 
 That's it!
