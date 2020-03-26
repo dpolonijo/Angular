@@ -38,11 +38,9 @@ export class AddComponent {
     this.markFormGroupTouched(this.form);
 
     if (this.form.valid) {
-      console.log('its valid call material dialog close');
       this.dialogRef.close(this.form);
     }
     else {
-      console.log('form invalid');
       return false;
     }
   }

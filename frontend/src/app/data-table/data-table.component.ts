@@ -44,19 +44,9 @@ export class DataTableComponent implements AfterViewInit, OnInit {
     // Get data from database
     this.apiService.getData().subscribe({
       next: (response: any) => {
-        console.log('response ... ', response);
         this.dataSource = new MatTableDataSource(response);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
-
-        // if(this.completedFilterValue != 0){
-        //   this.dataSource.filterPredicate = (data: any, filter: string) => data.completed.indexOf(filter) != -1;
-        // }
-        // else {
-        //   // Filter by title or decription
-        //   this.dataSource.filterPredicate = (data: any, filter) => (data.description.trim().toLowerCase().indexOf(filter.trim().toLowerCase()) !== -1 || data.title.trim().toLowerCase().indexOf(filter.trim().toLowerCase()) !== -1);
-        // }
-
       },
       error: (errorResponse: any) => {
         console.log('error', errorResponse)
@@ -80,7 +70,6 @@ export class DataTableComponent implements AfterViewInit, OnInit {
         this.apiService.insertData(result.value).subscribe({
           next: (response: any) => {
             response.created = new Date().toLocaleString();
-            console.log('Save data response ... ', response);
 
             // Append row to top of grid
             this.dataSource.data.push(response);
@@ -93,19 +82,14 @@ export class DataTableComponent implements AfterViewInit, OnInit {
           }
         })
       }
-
     });
   }
 
   // UPDATE STATUS
 
   updateStatus(event, id) {
-    console.log('CKBOX EVENT --- ', event);
-    console.log('CKBOX ID  --- ', id);
-
     this.apiService.updateStatus(id, event.checked).subscribe({
       next: (response: any) => {
-        console.log('Update status response  --- ', response);
         this.snackBarMsg('Status changed!')
       },
       error: (errorResponse: any) => {
@@ -128,7 +112,6 @@ export class DataTableComponent implements AfterViewInit, OnInit {
         // Delete record from database
         this.apiService.deleteRecord(id).subscribe({
           next: (response: any) => {
-            console.log('Delete record response  --- ', response);
             if (response.count == 1) {
 
               // Remove row from table on the client side
@@ -186,13 +169,11 @@ export class DataTableComponent implements AfterViewInit, OnInit {
             this.dataSource.filter = '';
         }
     }
-
   }
 
   // MULTIPLE DELETE  
 
   removeSelectedRows() {
-
     // Check if one or more checkboxes are selected
     this.selection.selected.forEach(item => {
       if (item) {
@@ -212,7 +193,6 @@ export class DataTableComponent implements AfterViewInit, OnInit {
           this.selection.selected.forEach(item => {
             this.apiService.deleteRecord(item.id).subscribe({
               next: (response: any) => {
-                console.log('Multiple delete response', response);
 
                 // Delete record/s from grid
                 let index: number = this.dataSource.data.findIndex(d => d === item);

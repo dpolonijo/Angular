@@ -52,7 +52,7 @@ export class ViewEditComponent implements OnInit {
   }
 
   // VIEW/EDIT FORM IMPLEMENTATION
-  
+
   buildForm(data) {
     let formValues = {
       'title': [data.title, [Validators.required]],
@@ -76,7 +76,7 @@ export class ViewEditComponent implements OnInit {
 
       // Check validation errors (empty title)
       this.formStatus = this.form.status;
-      if(this.formStatus != 'VALID') {
+      if (this.formStatus != 'VALID') {
         this.saveForm = false;
       }
     });
@@ -85,27 +85,26 @@ export class ViewEditComponent implements OnInit {
   // SAVE FORM DATA
 
   saveFormData(savedFrom) {
-      // Update existing record in database and return to view mode
-      this.apiService.updateFormData(this.id, this.newFormData['title'], this.newFormData['description']).subscribe({
-        next: (response: any) => {
-          console.log('Update form response  --- ', response);
+    // Update existing record in database and return to view mode
+    this.apiService.updateFormData(this.id, this.newFormData['title'], this.newFormData['description']).subscribe({
+      next: (response: any) => {
 
-          // Form saved on 'Save button' in edit mode
-          if(savedFrom == 'save-from-button') {
-            this.redirectTo('/details/' + this.id);
-          }
-
-          // Form saved on 'Save button' from discard confirm dialog
-          if(savedFrom == 'save-from-dialog') {
-            this.router.navigate(['']);
-          }
-
-          this.snackBarMsg('Data saved!');
-        },
-        error: (errorResponse: any) => {
-          console.log('Update form error!', errorResponse);
+        // Form saved on 'Save button' in edit mode
+        if (savedFrom == 'save-from-button') {
+          this.redirectTo('/details/' + this.id);
         }
-      })
+
+        // Form saved on 'Save button' from discard confirm dialog
+        if (savedFrom == 'save-from-dialog') {
+          this.router.navigate(['']);
+        }
+
+        this.snackBarMsg('Data saved!');
+      },
+      error: (errorResponse: any) => {
+        console.log('Update form error!', errorResponse);
+      }
+    })
   }
 
   // UPDATE STATUS (checkbox)
@@ -113,7 +112,6 @@ export class ViewEditComponent implements OnInit {
   updateStatus(id, event) {
     this.apiService.updateStatus(id, event.checked).subscribe({
       next: (response: any) => {
-        console.log('Update status response  --- ', response);
         this.snackBarMsg('Status changed!')
       },
       error: (errorResponse: any) => {
@@ -136,7 +134,6 @@ export class ViewEditComponent implements OnInit {
         // Delete record from database
         this.apiService.deleteRecord(id).subscribe({
           next: (response: any) => {
-            console.log('Delete record response  --- ', response);
             if (response.count == 1) {
               this.snackBarMsg('Record deleted!');
               this.router.navigate(['']);
@@ -168,7 +165,7 @@ export class ViewEditComponent implements OnInit {
 
   backAction() {
     // Form changes detected. Show confirmation dialog
-    if(this.saveForm) {
+    if (this.saveForm) {
       this.discardConfirmationDialog();
     }
     // No change detect. Go back to home page.
@@ -186,7 +183,7 @@ export class ViewEditComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(response => {
       // Save changes
-      if(response) {
+      if (response) {
         this.saveFormData('save-from-dialog')
       }
       // Discard changes
@@ -205,7 +202,7 @@ export class ViewEditComponent implements OnInit {
 
   // FLASH MESSAGES - SNACBAR
   // ToDo: Separate this as global service
-  
+
   snackBarMsg(msg) {
     this.snackBar.open(msg, null, {
       duration: 3000,
