@@ -1,7 +1,7 @@
 # toDoApp
 
 This is a simple To-Do application created as a showcase of basic CRUD (Create, Read, Update, Delete) operations using strictly Angular Material environment.
-Data is displayed in table view using Mat-Table component with support of fetching data from backend (some DB like Mysql) over the Rest-Api.
+Data is displayed in table view using Mat-Table component with support of fetching data from backend (some DB like MySQL) over the Rest-Api.
 For backend I used Node.js with Loopback (ORM) as middleware between Rest-Api service and MySQL database, but that is completely optional.  
 
 This project contains all the necessary (frontend + backend) parts in separated folders, and can be tested in a local environment.
@@ -37,7 +37,7 @@ To start this application on your computer please follow these steps.
 The first few steps at the beggining of the list represent setting of required development environment. 
 
 1. Download and install node.js from "https://nodejs.org"
-   You can check the successful installation by typing "node -v" in the termminal/comand prompt window.
+   You can check the successful installation by typing "<span style="background: #ccc">node -v<span>" in the termminal/comand prompt window.
 
 2. Install Angular CLI by entering this command in your terminal "npm install -g @angular/cli".
 
@@ -52,18 +52,18 @@ The first few steps at the beggining of the list represent setting of required d
    Project will appear in folder where you were positioned before you entered this command as new folder named "toDoApp". This is root project folder.
    Example: "C:\Projects\toDoApp\".
 
-7. From your termanal window navigate to path "['root_folder']/frontend". "['root_folder']" represents path of your root application folder from the above step.
+7. From your termanal window navigate to path "[root_folder]/frontend". "[root_folder]" represents path of your root application folder from the above step.
 
 8. Type "npm install" and press Enter.
 
-9. From your termanal window navigate to path "['root_folder']/backend". Type "npm install" and press Enter. These two steps will install all necessary project library dependencies.
+9. From your termanal window navigate to path "[root_folder]/backend". Type "npm install" and press Enter. These two steps will install all necessary project library dependencies.
 
-10. Navigate to path "['root_folder']/backend/server". Type "node server.js" and press Enter, to start backen server. 
+10. Navigate to path "[root_folder]/backend/server". Type "node server.js" and press Enter, to start backen server. 
     If everything is fine you shoud see the messages:</br>
 	Web server listening at: http://localhost:3000</br>
 	Browse your REST API at http://localhost:3000/explorer
 
-11. Open new terminal window (don't close existing) and navigate to path "['root_folder']/frontend/". Run command "ng-serve -o". 
+11. Open new terminal window (don't close existing) and navigate to path "[root_folder]/frontend/". Run command "ng-serve -o". 
 	After compiling and build process application should open in your default web browser on address "http://localhost:4200".
 
 
