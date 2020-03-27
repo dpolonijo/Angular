@@ -136,6 +136,9 @@ export class DataTableComponent implements AfterViewInit, OnInit {
 
     // Filter records by title or description
     if (filterType == 'text-filter') {
+
+      this.dataSource.filterPredicate = (data: any, filter) => (data.description.trim().toLowerCase().indexOf(filter.trim().toLowerCase()) !== -1 || data.title.trim().toLowerCase().indexOf(filter.trim().toLowerCase()) !== -1);
+
       // Fix for filtering empty columns (description can be empty)
       this.dataSource.data.forEach(element => {
         for (const key in Object(element)) {
@@ -147,14 +150,14 @@ export class DataTableComponent implements AfterViewInit, OnInit {
 
       const filterValue = (event.target as HTMLInputElement).value;
       this.dataSource.filter = filterValue.trim().toLowerCase();
-
-      this.dataSource.filterPredicate = (data: any, filter) => (data.description.trim().toLowerCase().indexOf(filter.trim().toLowerCase()) !== -1 || data.title.trim().toLowerCase().indexOf(filter.trim().toLowerCase()) !== -1);
     }
 
     // Filter records by changing status from dropdown
     if (filterType == 'select-filter') {
         this.completedFilterValue = event.value;
         
+        this.dataSource.filterPredicate = (data: any, filter) => (data.completed.toString().indexOf(filter) !== -1);
+
         switch(this.completedFilterValue) {
           case "all":
             this.dataSource.filter = '';
@@ -167,8 +170,8 @@ export class DataTableComponent implements AfterViewInit, OnInit {
               break;
           default:
             this.dataSource.filter = '';
+          }
         }
-    }
   }
 
   // MULTIPLE DELETE  
