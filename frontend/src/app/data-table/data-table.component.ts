@@ -31,6 +31,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   public multipleSelect: boolean = false;
   public defaultSelectVal: number = 1;
   public completedFilterValue: string = "all";
+  public searchFilterValue: string = "";
 
   displayedColumns = ['multiple_select', 'id', 'title', 'description', 'completed', 'created', 'view', 'delete'];
 
@@ -133,10 +134,14 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   // FILTER RECORDS
 
   applyFilter(event, filterType) {
-
-    // Filter records by title or description
+    
+    // Filter records by search input
     if (filterType == 'text-filter') {
+      
+      // Reset dropdown filter to default. The filters are independent.
+      this.completedFilterValue = 'all';
 
+      // Filter only by title and description columns
       this.dataSource.filterPredicate = (data: any, filter) => (data.description.trim().toLowerCase().indexOf(filter.trim().toLowerCase()) !== -1 || data.title.trim().toLowerCase().indexOf(filter.trim().toLowerCase()) !== -1);
 
       // Fix for filtering empty columns (description can be empty)
@@ -152,10 +157,15 @@ export class DataTableComponent implements AfterViewInit, OnInit {
       this.dataSource.filter = filterValue.trim().toLowerCase();
     }
 
+
     // Filter records by changing status from dropdown
     if (filterType == 'select-filter') {
         this.completedFilterValue = event.value;
+
+        // Reset search filter The filters are independent.
+        this.searchFilterValue = '';
         
+        // Filter only 'completed' column
         this.dataSource.filterPredicate = (data: any, filter) => (data.completed.toString().indexOf(filter) !== -1);
 
         switch(this.completedFilterValue) {
