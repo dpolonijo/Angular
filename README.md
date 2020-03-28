@@ -55,14 +55,14 @@ The first few steps at the beggining of the list represent setting of required d
 7. From your termanal window navigate to path `[root_folder]/frontend`. [root_folder] represents path of your root aplilication folder from the above step. </br>
    Type `npm install` and press Enter. Wait for the process to be completed.
 
-8. Repeat the process for the backend folder: From your termanal window navigate to path `[root_folder]/backend`. Type `npm install` and press Enter. These two steps will install all necessary project library dependencies.
+8. Repeat the process for the backend folder: From your termanal window navigate to path `[root_folder]/backend`. </br>Type `npm install` and press Enter. These two steps will install all necessary project library dependencies.
 
 9. Navigate to path `[root_folder]/backend/server`. Type `node server.js` and press Enter, to start backen server. 
     If everything is fine you shoud see the messages:</br>
 	Web server listening at: http://localhost:3000</br>
 	Browse your REST API at http://localhost:3000/explorer
 
-10. Open new terminal window (don't close existing) and navigate to path `[root_folder]/frontend/`. Run command `ng-serve -o`. 
+10. Open new terminal window (don't close existing) and navigate to path `[root_folder]/frontend/`. </br> Run command `ng-serve -o`. 
 	After compiling and build process application should open in your default web browser on address "http://localhost:4200".
 
 
