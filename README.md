@@ -43,27 +43,26 @@ The first few steps at the beggining of the list represent setting of required d
 
 3. Make sure you have installed and started MySql server. Note: You can use other databases like MS SQL, Oracle... but then you must define it in *datasource.json* file in backend folder of root application directory.  
 
-4. If not yet, install git on your computer and check if it works by typing 'git' in your terminal window.
-
-5. Run *to_do_list.sql* script from root folder of this project. You can import file or run script from any database management client (HeidiSQL, PHPMyAdmin, MySQL Workbench, DBeaver...). 
+4. Run *to_do_list.sql* script from root folder of this project. You can import file or run script from any database management client (HeidiSQL, PHPMyAdmin, MySQL Workbench, DBeaver...). </br>
    Make sure that after this process database *to_do* and table *to_do_list* must be created.
+
+5. If not yet, install git on your computer and check if it works by typing 'git' in your terminal window.
 
 6. Copy/clone this project from github to your local computer by typing `git clone https://github.com/dpolonijo/toDoApp.git` in your console.
    Project will appear in folder where you were positioned before you entered this command as new folder named *toDoApp*. This is root project folder.
    Example: *C:\Projects\toDoApp*.
 
-7. From your termanal window navigate to path `[root_folder]/frontend`. "[root_folder]" represents path of your root application folder from the above step.
+7. From your termanal window navigate to path `[root_folder]/frontend`. [root_folder] represents path of your root aplilication folder from the above step. </br>
+   Type `npm install` and press Enter. Wait for the process to be completed.
 
-8. Type `npm install` and press Enter.
+8. Repeat the process for the backend folder: From your termanal window navigate to path `[root_folder]/backend`. Type `npm install` and press Enter. These two steps will install all necessary project library dependencies.
 
-9. From your termanal window navigate to path `[root_folder]/backend`. Type `npm install` and press Enter. These two steps will install all necessary project library dependencies.
-
-10. Navigate to path `[root_folder]/backend/server`. Type `node server.js` and press Enter, to start backen server. 
+9. Navigate to path `[root_folder]/backend/server`. Type `node server.js` and press Enter, to start backen server. 
     If everything is fine you shoud see the messages:</br>
 	Web server listening at: http://localhost:3000</br>
 	Browse your REST API at http://localhost:3000/explorer
 
-11. Open new terminal window (don't close existing) and navigate to path `[root_folder]/frontend/`. Run command `ng-serve -o`. 
+10. Open new terminal window (don't close existing) and navigate to path `[root_folder]/frontend/`. Run command `ng-serve -o`. 
 	After compiling and build process application should open in your default web browser on address "http://localhost:4200".
 
 
