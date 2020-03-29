@@ -16,6 +16,7 @@ This showcase includes:
 	<li>Custom fiter of specific column from drop-down menu</li>
 	<li>Pagination</li>
 	<li>View/edit mode for edit record details</li>
+	<li>Forms change detection</li>
 </ul>
 
 # My current development environment
@@ -43,7 +44,7 @@ The first few steps at the beggining of the list represent setting of required d
 
 3. Make sure you have installed and started MySql server. Note: You can use other databases like MS SQL, Oracle... but then you must define it in *datasource.json* file in backend folder of root application directory.  
 
-4. Run *to_do_list.sql* script from root folder of this project. You can import file or run script from any database management client (HeidiSQL, PHPMyAdmin, MySQL Workbench, DBeaver...). </br>
+4. Run *to_do_list.sql* script from root folder of this project. You can import file or run script from any database management client (HeidiSQL, PHPMyAdmin, MySQL Workbench, DBeaver...). There are no special privileges for this database: u: root, p: ''.</br>
    Make sure that after this process database *to_do* and table *to_do_list* must be created.
 
 5. If not yet, install git on your computer and check if it works by typing 'git' in your terminal window.
