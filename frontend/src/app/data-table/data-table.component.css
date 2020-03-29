@@ -92,8 +92,7 @@ tr.mat-header-row {
   overflow: auto;
   max-height: 500px;
   max-height: calc(100% - 70px);
-  box-shadow: 0 0 7px #747474;
-  border-bottom: solid 1px #fff;
+  box-shadow: 0 0 5px #5b5b5b;
 }
 
 .multiple-delete-btn {
@@ -159,6 +158,56 @@ tr.mat-header-row {
 .shift-content-right {
   flex: 1 1 auto;
 }
+
+/* Fixed table columns width */
+
+.mat-column-multiple-select, .mat-column-id, .mat-column-title, .mat-column-description, .mat-column-completed, .mat-column-created, .mat-column-view, .mat-column-delete {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  word-break: break-word;
+
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.mat-column-multiple_select {
+  width: 5% !important;
+}
+
+.mat-column-id {
+  width: 5% !important;
+}
+
+.mat-column-title {
+  width: 20% !important;
+}
+
+.mat-column-description {
+  width: 20% !important;
+}
+
+.mat-column-completed {
+  width: 10% !important;
+}
+
+.mat-column-created {
+  width: 10% !important;
+}
+
+.mat-column-view {
+  width: 10% !important;
+}
+
+.mat-column-delete {
+  width: 10% !important;
+}
+
+/* End of fixed table columns width */
 
 
 

@@ -11,6 +11,7 @@ import { DeleteComponent } from '../dialogs/delete/delete.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
+import { fade } from '../animations/table-row';
 
 @Component({
   selector: 'app-data-table',
@@ -18,7 +19,8 @@ import { SelectionModel } from '@angular/cdk/collections';
   styleUrls: ['./data-table.component.css'],
   styles: [
     `/deep/ .mat-sort-header-button {text-shadow: 1px 1px #fff}`
-  ]
+  ],
+  animations: [fade]
 })
 export class DataTableComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -148,7 +150,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
       // Fix for filtering empty columns (description can be empty)
       this.dataSource.data.forEach(element => {
         for (const key in Object(element)) {
-          if (!element[key] || element[key] === null) {
+          if (!element[key] && key == 'description' || element[key] === null) {
             element[key] = '';
           }
         }
@@ -161,11 +163,13 @@ export class DataTableComponent implements AfterViewInit, OnInit {
 
     // Filter records by changing status from dropdown
     if (filterType == 'select-filter') {
-        this.completedFilterValue = event.value;
 
         // Reset search filter The filters are independent.
         this.searchFilterValue = '';
         
+        this.completedFilterValue = event.value;
+
+        //console.log('test-- ',this.completedFilterValue)
         // Filter only 'completed' column
         this.dataSource.filterPredicate = (data: any, filter) => (data.completed.toString().indexOf(filter) !== -1);
 

@@ -57,7 +57,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatSnackBarModule,
     MatSlideToggleModule,
     MatSelectModule,
-    MatToolbarModule
+    MatToolbarModule,
   ],
   providers: [RestApiService],
   bootstrap: [AppComponent]
