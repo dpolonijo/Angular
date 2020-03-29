@@ -1,4 +1,4 @@
-<button mat-stroked-button color="basic" class="add-new-btn" (click)="addNew()">Add New</button>
+<button mat-stroked-button color="basic" class="add-new-btn" (click)="addNew(container)">Add New</button>
 
 <mat-form-field class="filter-wrap">
   <mat-label>Filter</mat-label>
@@ -14,11 +14,7 @@
   </mat-select>
 </mat-form-field>
 
-<div class="mat-elevation-z8">
-  
-  <span (click)="removeSelectedRows()" class="multiple-delete-btn" title="Multiple delete action">
-    <mat-icon>delete_forever</mat-icon>
-  </span>
+<div class="mat-elevation-z8" #container>
 
   <table mat-table class="full-width-table" [dataSource]="dataSource" matSort aria-label="Elements" matSortActive="id" matSortDirection="desc">
 
@@ -84,14 +80,26 @@
       <td mat-cell *matCellDef="let row;"><span class="delete-btn" (click)="deleteRecord(row.id)"><mat-icon>delete_forever</mat-icon></span></td>
     </ng-container>
     
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <mat-paginator #paginator
-      [length]="dataSource?.data.length"
-      [pageIndex]="0"
-      [pageSize]="10"
-      [pageSizeOptions]="[2, 5, 10, 20, 50]">
-  </mat-paginator>
+  <mat-toolbar class="table-footer-sticky">
+    <mat-toolbar-row>
+    
+      <span (click)="removeSelectedRows()" class="multiple-delete-btn" title="Multiple delete action">
+        <mat-icon>delete_forever</mat-icon>
+      </span>
+
+      <span class="shift-content-right"></span>
+
+      <mat-paginator #paginator
+        [length]="dataSource?.data.length"
+        [pageIndex]="0"
+        [pageSize]="10"
+        [pageSizeOptions]="[2, 5, 10, 20, 50]">
+      </mat-paginator>
+      
+    </mat-toolbar-row>
+  </mat-toolbar>
 </div>

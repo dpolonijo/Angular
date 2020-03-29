@@ -43,9 +43,10 @@ tr.mat-header-row {
 }
 
 .filter-wrap, .completed-select {
-  position: absolute;
+  position: fixed;
   top: 15px;
   right: 130px;
+  z-index: 102;
 }
 
 .completed-select{
@@ -88,13 +89,18 @@ tr.mat-header-row {
 
 .mat-elevation-z8 {
   position: relative;
+  overflow: auto;
+  max-height: 500px;
+  max-height: calc(100% - 70px);
+  box-shadow: 0 0 7px #747474;
+  border-bottom: solid 1px #fff;
 }
 
 .multiple-delete-btn {
-  position: absolute;
-  bottom: 10px;
-  left: 20px;
   cursor: pointer;
+  line-height: 16px;
+  padding-right: 2px;
+  margin: 4px;
 }
 
 .multiple-delete-btn:hover {
@@ -131,9 +137,28 @@ tr.mat-header-row {
 
 ::ng-deep .completed-select .mat-form-field-ripple {
   /*change color of underline when focused*/
-  background-color: #999 !important;;
+  background-color: #999 !important;
  }
 
+ /* End of Completed dropdown styles */
+
+ .table-footer-sticky {
+  bottom: 0px;
+  position: sticky;
+  z-index: 2;
+  background: #F2F2F2;
+  /* box-shadow: 0 0 2px #9f9f9f; */
+}
+
+.mat-paginator {
+  background: #F2F2F2;
+  text-shadow: 1px 1px #fff;
+}
+
+/* Pagination on the right side of table footer */
+.shift-content-right {
+  flex: 1 1 auto;
+}
 
 
 

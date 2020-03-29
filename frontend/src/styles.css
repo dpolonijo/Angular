@@ -1,7 +1,9 @@
-
-
 html, body { 
     height: 100%; 
+}
+
+html {
+    overflow: hidden !important;
 }
 
 body { 
@@ -13,8 +15,9 @@ body {
 }
 
 .add-new-btn, .back-btn {
-    position: absolute !important;
+    position: fixed !important;
     right: 20px;
     top: 18px;
     background: #fff;
+    z-index: 102;
 }

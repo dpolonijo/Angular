@@ -57,7 +57,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
 
   // INSERT NEW RECORD
 
-  addNew() {
+  addNew(container) {
     const dialogRef = this.dialog.open(AddComponent, {
       width: '500px',
       data: {}
@@ -73,6 +73,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
             response.created = new Date().toLocaleString();
 
             // Append row to top of grid
+            container.scroll(0,0);
             this.dataSource.data.push(response);
             this.dataSource.filter = "";
 

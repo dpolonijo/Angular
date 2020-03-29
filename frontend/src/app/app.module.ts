@@ -24,6 +24,7 @@ import { ViewEditComponent } from './view-edit/view-edit.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { DiscardComponent } from './dialogs/discard/discard.component';
 import { MatSelectModule } from '@angular/material/select';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 
@@ -55,7 +56,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatIconModule,
     MatSnackBarModule,
     MatSlideToggleModule,
-    MatSelectModule
+    MatSelectModule,
+    MatToolbarModule
   ],
   providers: [RestApiService],
   bootstrap: [AppComponent]
