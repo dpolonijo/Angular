@@ -42,21 +42,21 @@ The first few steps at the beggining of the list represent setting of required d
 
 2. Install Angular CLI by entering this command in your terminal `npm install -g @angular/cli`.
 
-3. Make sure you have installed and started MySql server. Note: You can use other databases like MS SQL, Oracle... but then you must define it in *datasource.json* file in backend folder of root application directory.  
+3. If not yet, install git on your computer and check if it works by typing 'git' in your terminal window.
 
-4. Run *to_do_list.sql* script from root folder of this project. You can import file or run script from any database management client (HeidiSQL, PHPMyAdmin, MySQL Workbench, DBeaver...). There are no special privileges for this database: u: root, p: ''.</br>
-   Make sure that after this process database *to_do* and table *to_do_list* must be created.
-
-5. If not yet, install git on your computer and check if it works by typing 'git' in your terminal window.
-
-6. Copy/clone this project from github to your local computer by typing `git clone https://github.com/dpolonijo/toDoApp.git` in your console.
+4. Copy/clone this project from github to your local computer by typing `git clone https://github.com/dpolonijo/toDoApp.git` in your console.
    Project will appear in folder where you were positioned before you entered this command as new folder named *toDoApp*. This is root project folder.
    Example: *C:\Projects\toDoApp*.
 
-7. From your termanal window navigate to path `[root_folder]/frontend`. [root_folder] represents path of your root aplilication folder from the above step. </br>
+5. Make sure you have installed and started MySql server. Note: You can use other databases like MS SQL, Oracle... but then you must define it in *datasource.json* file in backend folder of root application directory.  
+
+6. Run *to_do_list.sql* script from root folder of this project. You can run the script or import sql file from any database management client (HeidiSQL, PHPMyAdmin, MySQL Workbench, DBeaver...). There are no special privileges for this database: u: root, p: ''.</br>
+   Make sure that after this process database *to_do* and table *to_do_list* must be created.
+
+7. From your terminal window navigate to path `[root_folder]/frontend`. [root_folder] represents path of your root aplilication folder from the above step. </br>
    Type `npm install` and press Enter. Wait for the process to be completed.
 
-8. Repeat the process for the backend folder: From your termanal window navigate to path `[root_folder]/backend`. </br>Type `npm install` and press Enter. These two steps will install all necessary project library dependencies.
+8. Repeat the process for the backend folder: From your terminal window navigate to path `[root_folder]/backend`. </br>Type `npm install` and press Enter. These two steps will install all necessary project library dependencies.
 
 9. Navigate to path `[root_folder]/backend/server`. Type `node server.js` and press Enter, to start backen server. 
     If everything is fine you shoud see the messages:</br>
